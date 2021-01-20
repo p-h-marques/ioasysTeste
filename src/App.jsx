@@ -13,9 +13,9 @@ import './reset.css'
 
 function App() {
     return (
-        <Router>
-            <Switch>
-                <AuthProvider>
+        <AuthProvider>
+            <Router>
+                <Switch>
                     <Route exact path="/login">
                         <Login></Login>
                     </Route>
@@ -27,9 +27,9 @@ function App() {
                     <Route path="*">
                         <h1>Erro 404</h1>
                     </Route>
-                </AuthProvider>
-            </Switch>
-        </Router>
+                </Switch>
+            </Router>
+        </AuthProvider>
     )
 }
 

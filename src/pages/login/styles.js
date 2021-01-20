@@ -39,6 +39,10 @@ export const LoginStyles = styled.div`
             }
         }
 
+        div.login{
+            width: 100%;
+        }
+
         div.login form p.feedback{
             font-size: 0.76rem;
             line-height: 1.95;

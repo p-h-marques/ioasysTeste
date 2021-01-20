@@ -16,6 +16,7 @@ const Login = () => {
     const {state, dispatch}         = useContext(AuthContext)
     const [showPass, setShowPass]   = useState('password')
     const [error, setError]         = useState(false)
+    const [loading, setLoading]     = useState(false)
 
     const handleShowPass = useCallback(()=>{
         let actualType = document.querySelector('#password input').getAttribute('type')
@@ -26,8 +27,27 @@ const Login = () => {
 
     }, [])
 
-    const handleAuth = useCallback(event => {
-        console.log(event)
+    const tryAuth = useCallback(() => {
+        setError(false)
+
+        const email = document.querySelector('#email input').value
+        const password = document.querySelector('#password input').value
+
+        if(email.length < 3 || password.length < 3){
+
+            setError(true)
+            return false
+
+        } else {
+
+            setLoading(true)
+            const data = {email, password, error}
+
+            handleAuth(dispatch, data)
+                .then(response => {
+                    setLoading(!response)
+                })
+        }
     }, [])
 
     return (
@@ -40,6 +60,7 @@ const Login = () => {
                 <div className="description">
                     <h1>BEM VINDO AO<br />EMPRESAS</h1>
                     <p>Lorem ipsum dolor sit amet, contetur<br />adipiscing elit. Nunc accumsan.</p>
+                    {loading && (<p>Lendo...</p>)}
                 </div>
 
                 <div className="login">
@@ -53,7 +74,7 @@ const Login = () => {
 
                         {error && (<p className="feedback">Credenciais informadas são inválidas, tente novamente.</p>)}
 
-                        <Button label="ENTRAR" event={handleAuth}></Button>
+                        <Button label="ENTRAR" event={tryAuth}></Button>
                     </form>
                 </div>
             </div>
