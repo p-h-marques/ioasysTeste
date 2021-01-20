@@ -1,8 +1,6 @@
 const url = 'https://empresas.ioasys.com.br/api/v1/users/auth/sign_in'
 
 export async function handleAuth(dispatch, data){
-    console.log('lerigou', data)
-
     const {email, password} = data
 
     let config = {
