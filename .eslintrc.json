@@ -17,6 +17,7 @@
     "linebreak-style": [1, "unix"],
     "no-unused-vars": [1, { "vars": "all", "args": "after-used", "ignoreRestSiblings": false }],
     "quotes": [1, "single"],
+    "react/prop-types": [0, {}],
     "semi": [1, "never"]
   },
   "settings": {

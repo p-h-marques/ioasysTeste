@@ -1,6 +1,9 @@
 import React, {useCallback, useState} from 'react'
 import {LoginStyles} from './styles'
 
+import Input from '../../components/login/input'
+import Button from '../../components/login/button'
+
 import ImgLogo from '../../assets/images/logo-home.png'
 import IconEmail from '../../assets/images/email.png'
 import IconPassword from '../../assets/images/password.png'
@@ -10,7 +13,7 @@ const Login = () => {
     const [showPass, setShowPass] = useState('password')
 
     const handleShowPass = useCallback(()=>{
-        let actualType = document.querySelector('.password').getAttribute('type')
+        let actualType = document.querySelector('#password input').getAttribute('type')
 
         actualType == 'password'
             ? setShowPass('text')
@@ -32,17 +35,14 @@ const Login = () => {
 
                 <div className="login">
                     <form>
-                        <div className="field">
-                            <img src={IconEmail} alt="Email"/>
-                            <input type="email" placeholder="Email" />
-                        </div>
-                        <div className="field">
-                            <img src={IconPassword} alt="Senha"/>
-                            <input className="password" type={showPass} autoComplete="new-password" placeholder="Senha"/>
-                            <img src={IconShowPassword} alt="Senha"
-                                onClick={handleShowPass}/>
-                        </div>
-                        <button>ENTRAR</button>
+                        <Input typeField="email" placeholder="Email" id="email"
+                            leftImg={IconEmail} altLeftImg="Email"></Input>
+
+                        <Input typeField={showPass} placeholder="Senha" id="password"
+                            leftImg={IconPassword} altLeftImg="Senha"
+                            rightImg={IconShowPassword} altrightImg="Mostrar Senha" clickRightImg={handleShowPass}></Input>
+
+                        <Button label="ENTRAR"></Button>
                     </form>
                 </div>
             </div>
