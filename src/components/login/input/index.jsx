@@ -1,25 +1,40 @@
-import React from 'react'
+import React, {useCallback, useState, useEffect} from 'react'
 import {InputStyles} from './styles'
 
 import IconAlert from '../../../assets/images/alert.png'
+import IconShowPassword from '../../../assets/images/show-password.png'
+import IconHidePassword from '../../../assets/images/hide-password.png'
 
 const Input = ({
 
     typeField, placeholder, id, error,
-    leftImg, altLeftImg,
-    rightImg, altRightImg, clickRightImg
+    img, altImg
 
 }) => {
+    const [showPass, setShowPass]   = useState(typeField)
+    const [iconPass, setIconPass]   = useState(IconShowPassword)
 
-    let classes = error ? 'error' : ''
+    const handleShowPass = useCallback(()=>{
+
+        if(showPass == 'password'){
+            setShowPass('text')
+            setIconPass(IconHidePassword)
+        } else {
+            setShowPass('password')
+            setIconPass(IconShowPassword)
+        }
+
+    }, [showPass])
 
     return (
-        <InputStyles id={id} className={classes}>
-            {leftImg && (<img src={leftImg} alt={altLeftImg}/>)}
+        <InputStyles id={id} className={error ? 'error' : ''}>
+            {img && (<img src={img} alt={altImg}/>)}
 
-            <input type={typeField} placeholder={placeholder} className={classes} autoComplete="new-password"/>
+            <input type={showPass} placeholder={placeholder} autoComplete="new-password"/>
 
-            {rightImg && !error && (<img src={rightImg} alt={altRightImg} onClick={clickRightImg}/>)}
+            {typeField == 'password' && !error && (
+                <img src={iconPass} alt="Mostrar ou Exibir Senha" onClick={handleShowPass}/>
+            )}
 
             {error && (<img src={IconAlert} alt="Erro!"/>)}
         </InputStyles>

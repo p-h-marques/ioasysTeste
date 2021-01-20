@@ -5,5 +5,5 @@
 - descrever, depois, a estrutura de arquivos
 - descrever certinho as paradas do `store`
 
-### Se input for password
-se tiver a id password, os efeitos de mostrar/exibir senha e de trocar a imagem serão internos
+### TODOs
+- Corrigir ícones de erro

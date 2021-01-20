@@ -41,6 +41,7 @@ export const InputStyles = styled.div`
         input+img{
             height: 22px;
             top: 0px;
+            cursor: unset;
         }
     }
 

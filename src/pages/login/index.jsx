@@ -11,22 +11,11 @@ import ImgLogo from '../../assets/images/logo-home.png'
 import ImgLoading from '../../assets/images/loader.png'
 import IconEmail from '../../assets/images/email.png'
 import IconPassword from '../../assets/images/password.png'
-import IconShowPassword from '../../assets/images/show-password.png'
 
 const Login = () => {
     const {state, dispatch}         = useContext(AuthContext)
-    const [showPass, setShowPass]   = useState('password')
     const [error, setError]         = useState(false)
     const [loading, setLoading]     = useState(false)
-
-    const handleShowPass = useCallback(()=>{
-        let actualType = document.querySelector('#password input').getAttribute('type')
-
-        actualType == 'password'
-            ? setShowPass('text')
-            : setShowPass('password')
-
-    }, [])
 
     const tryAuth = useCallback(() => {
         setError(false)
@@ -46,7 +35,8 @@ const Login = () => {
 
             handleAuth(dispatch, data)
                 .then(response => {
-                    setLoading(!response)
+                    setError(!response)
+                    setLoading(false)
                 })
         }
     }, [])
@@ -73,11 +63,10 @@ const Login = () => {
                     <div className="login">
                         <form>
                             <Input typeField="email" placeholder="Email" id="email" error={error}
-                                leftImg={IconEmail} altLeftImg="Email"></Input>
+                                img={IconEmail} altImg="Email"></Input>
 
-                            <Input typeField={showPass} placeholder="Senha" id="password" error={error}
-                                leftImg={IconPassword} altLeftImg="Senha"
-                                rightImg={IconShowPassword} altrightImg="Mostrar Senha" clickRightImg={handleShowPass}></Input>
+                            <Input typeField="password" placeholder="Senha" id="password" error={error}
+                                img={IconPassword} altImg="Senha"></Input>
 
                             {error && (<p className="feedback">Credenciais informadas são inválidas, tente novamente.</p>)}
 
