@@ -1,27 +1,32 @@
 import React from 'react'
-import { BrowserRouter as Router, Redirect, Route, Switch } from "react-router-dom";
+import {
+    BrowserRouter as Router,
+    Redirect,
+    Route,
+    Switch,
+} from 'react-router-dom'
 
 import Login from './pages/login'
 import './reset.css'
 
 function App() {
-  return (
-    <Router>
-      <Switch>
-          <Route exact path="/login">
-              <Login></Login>
-          </Route>
+    return (
+        <Router>
+            <Switch>
+                <Route exact path="/login">
+                    <Login></Login>
+                </Route>
 
-          <Route exact path="/">
-              <Redirect to="/login" />
-          </Route>
+                <Route exact path="/">
+                    <Redirect to="/login" />
+                </Route>
 
-          <Route path="*">
-              <h1>Erro 404</h1>
-          </Route>
-      </Switch>
-  </Router>
-  );
+                <Route path="*">
+                    <h1>Erro 404</h1>
+                </Route>
+            </Switch>
+        </Router>
+    )
 }
 
-export default App;
+export default App
