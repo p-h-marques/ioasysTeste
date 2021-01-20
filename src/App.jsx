@@ -2,6 +2,7 @@ import React from 'react'
 import { BrowserRouter as Router, Redirect, Route, Switch } from "react-router-dom";
 
 import Login from './pages/login'
+import './reset.css'
 
 function App() {
   return (
