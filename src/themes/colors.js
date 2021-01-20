@@ -10,7 +10,8 @@ const colors = {
     black54:            'rgba(0, 0, 0, 0.54)',
     nightBlue:          '#0d0430',
     background:         '#eeecdb',
-    blue:               '#57bbbc'
+    blue:               '#57bbbc',
+    danger:             '#ff0f44'
 }
 
 const texts = {

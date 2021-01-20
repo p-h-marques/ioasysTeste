@@ -15,7 +15,9 @@ export const LoginStyles = styled.div`
         flex-direction: column;
         justify-content: center;
         align-items: center;
-        max-width: 348px;
+        /* min-width: 350px; */
+        /* max-width: 350px; */
+        width: 350px;
 
         div.logo img{
             width: 295px;
@@ -35,6 +37,14 @@ export const LoginStyles = styled.div`
                 color: ${colors.charcoalGrey};
                 margin-bottom: 46px;
             }
+        }
+
+        div.login form p.feedback{
+            font-size: 0.76rem;
+            line-height: 1.95;
+            text-align: center;
+            color: ${colors.danger};
+            margin: -20px 0px -2px 0px;
         }
     }
 `

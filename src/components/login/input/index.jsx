@@ -1,16 +1,27 @@
 import React from 'react'
 import {InputStyles} from './styles'
 
-const Input = ({typeField, placeholder, id,
+import IconAlert from '../../../assets/images/alert.png'
+
+const Input = ({
+
+    typeField, placeholder, id, error,
     leftImg, altLeftImg,
-    rightImg, altRightImg, clickRightImg}) => {
+    rightImg, altRightImg, clickRightImg
+
+}) => {
+
+    let classes = error ? 'error' : ''
+
     return (
-        <InputStyles id={id}>
+        <InputStyles id={id} className={classes}>
             {leftImg && (<img src={leftImg} alt={altLeftImg}/>)}
 
-            <input type={typeField} placeholder={placeholder}  autoComplete="new-password"/>
+            <input type={typeField} placeholder={placeholder} className={classes} autoComplete="new-password"/>
 
-            {rightImg && (<img src={rightImg} alt={altRightImg} onClick={clickRightImg}/>)}
+            {rightImg && !error && (<img src={rightImg} alt={altRightImg} onClick={clickRightImg}/>)}
+
+            {error && (<img src={IconAlert} alt="Erro!"/>)}
         </InputStyles>
     )
 }

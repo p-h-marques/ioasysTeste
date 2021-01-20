@@ -32,4 +32,16 @@ export const InputStyles = styled.div`
         color: ${colors.charcoalGreyTwo};
         padding: 0px 0px 4px 30px;
     }
+
+    &.error{
+        input{
+            border-bottom: 0.6px solid ${colors.danger};
+        }
+
+        input+img{
+            height: 22px;
+            top: 0px;
+        }
+    }
+
 `
