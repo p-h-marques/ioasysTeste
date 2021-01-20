@@ -1,9 +1,9 @@
 import React from 'react'
 import {ButtonStyles} from './styles'
 
-const Button = ({label}) => {
+const Button = ({label, event}) => {
     return(
-        <ButtonStyles>{label}</ButtonStyles>
+        <ButtonStyles onClick={event}>{label}</ButtonStyles>
     )
 }
 

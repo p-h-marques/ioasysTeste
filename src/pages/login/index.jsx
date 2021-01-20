@@ -1,5 +1,8 @@
-import React, {useCallback, useState} from 'react'
+import React, {useCallback, useState, useContext} from 'react'
 import {LoginStyles} from './styles'
+
+import AuthContext from '../../store/context/AuthContext'
+import {handleAuth} from '../../store/actions'
 
 import Input from '../../components/login/input'
 import Button from '../../components/login/button'
@@ -10,6 +13,7 @@ import IconPassword from '../../assets/images/password.png'
 import IconShowPassword from '../../assets/images/show-password.png'
 
 const Login = () => {
+    const {state, dispatch}         = useContext(AuthContext)
     const [showPass, setShowPass]   = useState('password')
     const [error, setError]         = useState(false)
 
@@ -20,6 +24,10 @@ const Login = () => {
             ? setShowPass('text')
             : setShowPass('password')
 
+    }, [])
+
+    const handleAuth = useCallback(event => {
+        console.log(event)
     }, [])
 
     return (
@@ -45,7 +53,7 @@ const Login = () => {
 
                         {error && (<p className="feedback">Credenciais informadas são inválidas, tente novamente.</p>)}
 
-                        <Button label="ENTRAR"></Button>
+                        <Button label="ENTRAR" event={handleAuth}></Button>
                     </form>
                 </div>
             </div>

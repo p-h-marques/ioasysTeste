@@ -2,9 +2,10 @@ import styled from 'styled-components'
 
 import {colors} from '../../../themes/colors'
 
-export const ButtonStyles = styled.button`
+export const ButtonStyles = styled.a`
     margin-top: 12px;
     display: inline-block;
+    text-align: center;
     width: 100%;
     border: 0px;
     border-radius: 4px;
