@@ -11,3 +11,4 @@
 - caso o request dê errado, fazer o processo de logout
 - deixar requisições fetch centralizadas
 - colocar loading na requisição das empresas
+- deixar as "imagens" dinâmicas

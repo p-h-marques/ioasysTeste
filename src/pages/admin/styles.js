@@ -65,6 +65,27 @@ export const AdminStyles = styled.div`
                 cursor: pointer;
             }
         }
+
+        div.enterprise{
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            width: 100%;
+            height: 100%;
+            padding: 80px 42px 24px 42px;
+
+            img{
+                width: 60px;
+                cursor: pointer;
+            }
+
+            span{
+                margin-left: 80px;
+                font-size: 2.125rem;
+                line-height: 2.125rem;
+                color: ${colors.whiteTwo}
+            }
+        }
     }
 
     main{
@@ -74,7 +95,7 @@ export const AdminStyles = styled.div`
         flex-direction: column;
         justify-content: center;
         align-items: center; */
-        padding: 50px;
+        padding: 44px;
 
         div.instructions{
             width: 100%;
@@ -91,7 +112,7 @@ export const AdminStyles = styled.div`
 
         div.enterprises{
             display: grid;
-            row-gap: 30px;
+            row-gap: 44px;
 
             @media(min-width: 1400px){
                 grid-template-columns: auto auto;
@@ -107,6 +128,10 @@ export const AdminStyles = styled.div`
             display: flex;
             flex-direction: row;
             cursor: pointer;
+
+            &:hover{
+                background-color: ${colors.white};
+            }
 
             div.img img{
                 width: 293px;
@@ -130,6 +155,30 @@ export const AdminStyles = styled.div`
                 p.country{
                     ${texts.style8}
                 }
+            }
+        }
+
+        div.details{
+            background-color: ${colors.whiteTwo};
+            border-radius: 4.7px;
+            width: 100%;
+            padding: 48px 75px;
+            display: flex;
+            flex-direction: column;
+
+            img{
+                width: 100%;
+            }
+
+            p{
+                margin-top: 49px;
+                font-size: 2.125rem;
+                font-weight: normal;
+                font-stretch: normal;
+                font-style: normal;
+                line-height: normal;
+                text-align: left;
+                color: ${colors.warmGrey};
             }
         }
     }

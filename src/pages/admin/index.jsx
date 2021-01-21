@@ -96,7 +96,7 @@ const Admin = () => {
                                 {
                                     stateEnterprises.map(el => {
                                         return (
-                                            <div key={el.id} className="card">
+                                            <div key={el.id} className="card" onClick={()=>{history.push('/admin/' + el.id)}}>
                                                 <div className="img">
                                                     <img src={ImgEmpresa} alt={el.enterprise_name}/>
                                                 </div>
