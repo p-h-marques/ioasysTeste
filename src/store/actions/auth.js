@@ -15,8 +15,20 @@ export async function handleAuth(dispatch, data){
     const response  = await request.json()
 
     if(response.success){
+        dispatch({
+            type: 'authUser',
+            payload: {
+                'access-token': request.headers.get('access-token'),
+                'client': request.headers.get('client'),
+                'uid': request.headers.get('uid')
+            }
+        })
         return true
     } else {
+        dispatch({
+            type: 'refuseUser',
+            payload: {error: true}
+        })
         return false
     }
 }

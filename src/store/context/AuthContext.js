@@ -1,9 +1,9 @@
 import {createContext} from 'react'
 
 export const initialData = {
-    email: '',
-    password: '',
-    auth: false,
+    'access-token': '',
+    'client': '',
+    'uid': '',
     error: false
 }
 

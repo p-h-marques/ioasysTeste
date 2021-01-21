@@ -1,4 +1,4 @@
-import React, {useCallback, useState, useContext} from 'react'
+import React, {useCallback, useState, useContext, useEffect} from 'react'
 import {LoginStyles, LoadingStyles} from './styles'
 
 import AuthContext from '../../store/context/AuthContext'
@@ -18,28 +18,42 @@ const Login = () => {
     const [loading, setLoading]     = useState(false)
 
     const tryAuth = useCallback(() => {
-        setError(false)
+        dispatch({
+            type: 'resetAuth',
+            payload: {}
+        })
 
         const email = document.querySelector('#email input').value
         const password = document.querySelector('#password input').value
 
         if(email.length < 3 || password.length < 3){
 
-            setError(true)
+            dispatch({
+                type: 'refuseUser',
+                payload: {error: true}
+            })
             return false
 
         } else {
-
             setLoading(true)
             const data = {email, password, error}
 
             handleAuth(dispatch, data)
-                .then(response => {
-                    setError(!response)
-                    setLoading(false)
-                })
+                .then(()=>{setLoading(false)})
         }
     }, [])
+
+    useEffect(()=>{
+        //se access token tiver vazio, tenta pegar do local storage
+        //se access token tiver cheio, grava no local storage e autentica
+        if(state['access-token'] != ''){
+            localStorage.setItem('io_auth', JSON.stringify({
+                'access-token': state['access-token'],
+                'client':       state['client'],
+                'uid':          state['uid']
+            }))
+        }
+    }, [state])
 
     return (
         <>
@@ -62,13 +76,13 @@ const Login = () => {
 
                     <div className="login">
                         <form>
-                            <Input typeField="email" placeholder="Email" id="email" error={error}
+                            <Input typeField="email" placeholder="Email" id="email" error={state.error}
                                 img={IconEmail} altImg="Email"></Input>
 
-                            <Input typeField="password" placeholder="Senha" id="password" error={error}
+                            <Input typeField="password" placeholder="Senha" id="password" error={state.error}
                                 img={IconPassword} altImg="Senha"></Input>
 
-                            {error && (<p className="feedback">Credenciais informadas são inválidas, tente novamente.</p>)}
+                            {state.error && (<p className="feedback">Credenciais informadas são inválidas, tente novamente.</p>)}
 
                             <Button label="ENTRAR" event={tryAuth}></Button>
                         </form>
