@@ -3,7 +3,7 @@ import {useHistory} from 'react-router-dom'
 
 import AuthContext from '../../store/context/AuthContext'
 import EnterprisesContext from '../../store/context/EnterprisesContext'
-import {fetchAllEnterprises} from '../../store/actions'
+import {fetchAllEnterprises, fetchFilteredEnterprises} from '../../store/actions'
 
 import {AdminStyles} from './styles'
 
@@ -44,6 +44,10 @@ const Admin = () => {
         fetchAllEnterprises(stateAuth, dispatchEnterprises)
     }, [searchInput, stateAuth])
 
+    const handleFilter = useCallback(ev => {
+        fetchFilteredEnterprises(stateAuth, ev.target.value, dispatchEnterprises)
+    },[stateAuth])
+
     useEffect(()=>{
         console.log(stateEnterprises)
     }, [stateEnterprises])
@@ -56,7 +60,7 @@ const Admin = () => {
                         ? (
                             <div className="search">
                                 <img src={ImgSearch} className="search" alt="Pesquisar" />
-                                <input type="text" placeholder="Pesquisar" />
+                                <input type="text" placeholder="Pesquisar" onChange={handleFilter}/>
                                 <img src={ImgClose} className="close" alt="Fechar" onClick={handleSearch} />
                             </div>
                         )

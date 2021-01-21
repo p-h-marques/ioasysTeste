@@ -16,7 +16,7 @@ export default function reducer(state, action){
     case 'resetAuth':
         return initialData
 
-    case 'fetchAllEnterprises':
+    case 'fetchEnterprises':
         return action.payload
 
     default:
