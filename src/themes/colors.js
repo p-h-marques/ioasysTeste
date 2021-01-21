@@ -29,6 +29,33 @@ const texts = {
         letter-spacing: -1.2px;
         text-align: center;
         color: ${colors.charcoalGrey};
+    `,
+    style6: `
+        font-size: 1.875rem;
+        font-weight: bold;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: normal;
+        letter-spacing: normal;
+        color: ${colors.darkIndigo};
+    `,
+    style7: `
+        font-size: 1.5rem;
+        font-weight: normal;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: normal;
+        letter-spacing: normal;
+        color: ${colors.warmGrey};
+    `,
+    style8: `
+        font-size: 1.125rem;
+        font-weight: normal;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: normal;
+        letter-spacing: normal;
+        color: ${colors.warmGrey};
     `
 }
 

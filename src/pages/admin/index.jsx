@@ -6,6 +6,7 @@ import EnterprisesContext from '../../store/context/EnterprisesContext'
 import {fetchAllEnterprises, fetchFilteredEnterprises} from '../../store/actions'
 
 import {AdminStyles} from './styles'
+import ImgEmpresa from '../../assets/images/empresa.png'
 
 import ImgNavLogo from '../../assets/images/logo-nav.png'
 import ImgSearch from '../../assets/images/search.png'
@@ -15,6 +16,7 @@ const Admin = () => {
     const {stateAuth, dispatchAuth}                 = useContext(AuthContext)
     const {stateEnterprises, dispatchEnterprises}   = useContext(EnterprisesContext)
     const [searchInput, setSearchInput]             = useState(false)
+    const [searchText, setSearchText]               = useState('')
     const history                                   = useHistory()
 
     useEffect(()=>{
@@ -44,13 +46,9 @@ const Admin = () => {
         fetchAllEnterprises(stateAuth, dispatchEnterprises)
     }, [searchInput, stateAuth])
 
-    const handleFilter = useCallback(ev => {
-        fetchFilteredEnterprises(stateAuth, ev.target.value, dispatchEnterprises)
-    },[stateAuth])
-
     useEffect(()=>{
-        console.log(stateEnterprises)
-    }, [stateEnterprises])
+        if(searchInput) fetchFilteredEnterprises(stateAuth, searchText, dispatchEnterprises)
+    }, [searchText])
 
     return (
         <AdminStyles>
@@ -60,7 +58,7 @@ const Admin = () => {
                         ? (
                             <div className="search">
                                 <img src={ImgSearch} className="search" alt="Pesquisar" />
-                                <input type="text" placeholder="Pesquisar" onChange={handleFilter}/>
+                                <input type="text" placeholder="Pesquisar" onChange={ev => setSearchText(ev.target.value)}/>
                                 <img src={ImgClose} className="close" alt="Fechar" onClick={handleSearch} />
                             </div>
                         )
@@ -73,20 +71,48 @@ const Admin = () => {
                 }
             </nav>
             <main>
-                <div>
-                    {
-                        searchInput
-                            ? (<p>Digite para filtrar as empresas desejadas.</p>)
-                            : (<p>Clique na busca para iniciar.</p>)
-                    }
-                </div>
-                <div>
-                    {
-                        stateEnterprises.map(el => {
-                            return (<span key={el.id}>{el.enterprise_name} | </span>)
-                        })
-                    }
-                </div>
+                {
+
+                    stateEnterprises.length == 0
+                        ? (
+                            <div className="instructions">
+                                {
+                                    searchInput
+                                        ? (
+                                            <p>
+                                                {
+                                                    searchText.length == 0
+                                                        ? (<>Digite para filtrar as empresas desejadas.</>)
+                                                        : (<>Pesquisa sem nenhum retorno.<br />Que tal refinar o termo desejado?</>)
+                                                }
+                                            </p>
+                                        )
+                                        : (<p>Clique na busca para iniciar.</p>)
+                                }
+                            </div>
+                        )
+                        : (
+                            <div className="enterprises">
+                                {
+                                    stateEnterprises.map(el => {
+                                        return (
+                                            <div key={el.id} className="card">
+                                                <div className="img">
+                                                    <img src={ImgEmpresa} alt={el.enterprise_name}/>
+                                                </div>
+                                                <div className="infos">
+                                                    <h2>{el.enterprise_name}</h2>
+                                                    <p className="type">{el.enterprise_type.enterprise_type_name}</p>
+                                                    <p className="country">{el.country}</p>
+                                                </div>
+                                            </div>
+                                        )
+                                    })
+                                }
+                            </div>
+                        )
+                }
+
             </main>
         </AdminStyles>
     )

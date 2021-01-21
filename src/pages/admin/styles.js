@@ -1,10 +1,10 @@
 import styled from 'styled-components'
 
-import {colors, gradients} from '../../themes/colors'
+import {colors, gradients, texts} from '../../themes/colors'
 
 export const AdminStyles = styled.div`
     width: 100vw;
-    height: 100vh;
+    min-height: 100vh;
     background: ${colors.background};
     display: flex;
     flex-direction: column;
@@ -70,10 +70,16 @@ export const AdminStyles = styled.div`
     main{
         width: 100%;
         height: 100%;
-        display: flex;
+        /* display: flex;
         flex-direction: column;
         justify-content: center;
-        align-items: center;
+        align-items: center; */
+        padding: 50px;
+
+        div.instructions{
+            width: 100%;
+            height: 100%;
+        }
 
         p{
             font-size: 2rem;
@@ -81,6 +87,50 @@ export const AdminStyles = styled.div`
             letter-spacing: -0.45px;
             color: ${colors.charcoalGrey};
             text-align: center;
+        }
+
+        div.enterprises{
+            display: grid;
+            row-gap: 30px;
+
+            @media(min-width: 1400px){
+                grid-template-columns: auto auto;
+                column-gap: 30px;
+            }
+        }
+
+        div.card{
+            background-color: ${colors.whiteTwo};
+            border-radius: 4.7px;
+            width: 100%;
+            padding: 27px 30px;
+            display: flex;
+            flex-direction: row;
+            cursor: pointer;
+
+            div.img img{
+                width: 293px;
+                margin-right: 39px;
+            }
+
+            div.infos{
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: flex-start;
+
+                h2{
+                    ${texts.style6}
+                }
+
+                p.type{
+                    ${texts.style7}
+                }
+
+                p.country{
+                    ${texts.style8}
+                }
+            }
         }
     }
 `
