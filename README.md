@@ -12,3 +12,4 @@
 - deixar requisições fetch centralizadas
 - colocar loading na requisição das empresas
 - deixar as "imagens" dinâmicas
+- verificar o local storage em todas as páginas

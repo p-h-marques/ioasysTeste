@@ -44,7 +44,20 @@ export async function fetchFilteredEnterprises(authState, filter, dispatchEnterp
             payload: response.enterprises
         })
 
-        return true
+        return response
+    }
+
+    return false
+}
+
+export async function fetchIdEnterprise(authState, id){
+    let config = makeHeaders(authState)
+
+    const request  = await fetch(urlEnterprises + `/${id}`, config)
+    const response = await request.json()
+
+    if(request.status == 200){
+        return response.enterprise
     }
 
     return false
