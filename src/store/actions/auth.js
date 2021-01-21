@@ -1,4 +1,5 @@
-const url = 'https://empresas.ioasys.com.br/api/v1/users/auth/sign_in'
+export const url = 'https://empresas.ioasys.com.br/api/v1/users/auth/sign_in'
+export const codeStorage = 'io_auth'
 
 export async function handleAuth(dispatch, data){
     const {email, password} = data
@@ -15,20 +16,32 @@ export async function handleAuth(dispatch, data){
     const response  = await request.json()
 
     if(response.success){
+
+        let body = {
+            'access-token': request.headers.get('access-token'),
+            'client': request.headers.get('client'),
+            'uid': request.headers.get('uid')
+        }
+
+        localStorage.setItem(codeStorage, JSON.stringify(body))
+
         dispatch({
             type: 'authUser',
-            payload: {
-                'access-token': request.headers.get('access-token'),
-                'client': request.headers.get('client'),
-                'uid': request.headers.get('uid')
-            }
+            payload: body
         })
+
         return true
+
     } else {
+
+        localStorage.removeItem(codeStorage)
+
         dispatch({
             type: 'refuseUser',
             payload: {error: true}
         })
+
         return false
+
     }
 }

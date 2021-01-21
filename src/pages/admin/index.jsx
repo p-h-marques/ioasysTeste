@@ -15,10 +15,16 @@ const Admin = () => {
                 return false
             }
 
-            dispatch({
-                type: 'authUser',
-                payload: localState
-            })
+            if(
+                localState['access-token'] != '' &&
+                localState['client']       != '' &&
+                localState['uid']          != ''
+            ){
+                dispatch({
+                    type: 'authUser',
+                    payload: localState
+                })
+            }
         }
     }, [])
 

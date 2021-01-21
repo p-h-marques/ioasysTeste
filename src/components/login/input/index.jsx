@@ -1,4 +1,4 @@
-import React, {useCallback, useState, useEffect} from 'react'
+import React, {useCallback, useState} from 'react'
 import {InputStyles} from './styles'
 
 import IconAlert from '../../../assets/images/alert.png'
@@ -6,10 +6,8 @@ import IconShowPassword from '../../../assets/images/show-password.png'
 import IconHidePassword from '../../../assets/images/hide-password.png'
 
 const Input = ({
-
     typeField, placeholder, id, error,
     img, altImg
-
 }) => {
     const [showPass, setShowPass]   = useState(typeField)
     const [iconPass, setIconPass]   = useState(IconShowPassword)

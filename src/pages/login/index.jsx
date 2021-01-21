@@ -3,7 +3,7 @@ import {useHistory} from 'react-router-dom'
 import {LoginStyles, LoadingStyles} from './styles'
 
 import AuthContext from '../../store/context/AuthContext'
-import {handleAuth} from '../../store/actions'
+import {handleAuth, codeStorage} from '../../store/actions'
 
 import Input from '../../components/login/input'
 import Button from '../../components/login/button'
@@ -15,7 +15,6 @@ import IconPassword from '../../assets/images/password.png'
 
 const Login = () => {
     const {state, dispatch}     = useContext(AuthContext)
-    const [error, setError]     = useState(false)
     const [loading, setLoading] = useState(false)
     const history               = useHistory()
 
@@ -38,7 +37,7 @@ const Login = () => {
 
         } else {
             setLoading(true)
-            const data = {email, password, error}
+            const data = {email, password}
 
             handleAuth(dispatch, data)
                 .then(()=>{setLoading(false)})
@@ -47,18 +46,32 @@ const Login = () => {
     }, [])
 
     useEffect(()=>{
-        //se access token tiver vazio, tenta pegar do local storage
-        //se access token tiver cheio, grava no local storage e autentica
-        if(state['access-token'] != ''){
-            localStorage.setItem('io_auth', JSON.stringify({
-                'access-token': state['access-token'],
-                'client':       state['client'],
-                'uid':          state['uid']
-            }))
+        //função
+        if(
+            state['access-token'] != '' &&
+            state['client']       != '' &&
+            state['uid']          != ''
+        ){
+            history.push('/admin')
         }
 
-        console.log(state)
-    }, [state])
+        let localState = JSON.parse(localStorage.getItem(codeStorage))
+
+        if(!localState) return false
+
+        if(
+            localState['access-token'] != '' &&
+            localState['client']       != '' &&
+            localState['uid']          != ''
+        ){
+            dispatch({
+                type: 'authUser',
+                payload: localState
+            })
+
+            history.push('/admin')
+        }
+    },[])
 
     return (
         <>

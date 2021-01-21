@@ -1,3 +1,3 @@
-import {handleAuth} from './auth'
+import {handleAuth, codeStorage} from './auth'
 
-export {handleAuth}
+export {handleAuth, codeStorage}
