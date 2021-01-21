@@ -9,6 +9,7 @@ import {
 import AuthProvider from './store/providers/AuthProvider'
 
 import Login from './pages/login'
+import Admin from './pages/admin'
 import './reset.css'
 
 function App() {
@@ -22,6 +23,10 @@ function App() {
 
                     <Route exact path="/">
                         <Redirect to="/login" />
+                    </Route>
+
+                    <Route exact path="/admin">
+                        <Admin></Admin>
                     </Route>
 
                     <Route path="*">

@@ -7,6 +7,6 @@ export const initialData = {
     error: false
 }
 
-const AuthContext = createContext(initialData)
+const AuthContext = createContext()
 
 export default AuthContext

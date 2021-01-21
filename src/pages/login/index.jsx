@@ -1,4 +1,5 @@
 import React, {useCallback, useState, useContext, useEffect} from 'react'
+import {useHistory} from 'react-router-dom'
 import {LoginStyles, LoadingStyles} from './styles'
 
 import AuthContext from '../../store/context/AuthContext'
@@ -13,9 +14,10 @@ import IconEmail from '../../assets/images/email.png'
 import IconPassword from '../../assets/images/password.png'
 
 const Login = () => {
-    const {state, dispatch}         = useContext(AuthContext)
-    const [error, setError]         = useState(false)
-    const [loading, setLoading]     = useState(false)
+    const {state, dispatch}     = useContext(AuthContext)
+    const [error, setError]     = useState(false)
+    const [loading, setLoading] = useState(false)
+    const history               = useHistory()
 
     const tryAuth = useCallback(() => {
         dispatch({
@@ -40,6 +42,7 @@ const Login = () => {
 
             handleAuth(dispatch, data)
                 .then(()=>{setLoading(false)})
+                .then(()=>{history.push('/admin')})
         }
     }, [])
 
@@ -53,6 +56,8 @@ const Login = () => {
                 'uid':          state['uid']
             }))
         }
+
+        console.log(state)
     }, [state])
 
     return (

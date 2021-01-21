@@ -7,3 +7,6 @@
 
 ### TODOs
 - Corrigir ícones de erro
+- precisa ir validando as infos a cada requisição
+- n esquecer de limpar o local storage
+- melhorar a parte de pesquisa do local storage
