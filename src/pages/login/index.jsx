@@ -14,12 +14,12 @@ import IconEmail from '../../assets/images/email.png'
 import IconPassword from '../../assets/images/password.png'
 
 const Login = () => {
-    const {state, dispatch}     = useContext(AuthContext)
+    const {stateAuth, dispatchAuth}     = useContext(AuthContext)
     const [loading, setLoading] = useState(false)
     const history               = useHistory()
 
     const tryAuth = useCallback(() => {
-        dispatch({
+        dispatchAuth({
             type: 'resetAuth',
             payload: {}
         })
@@ -29,7 +29,7 @@ const Login = () => {
 
         if(email.length < 3 || password.length < 3){
 
-            dispatch({
+            dispatchAuth({
                 type: 'refuseUser',
                 payload: {error: true}
             })
@@ -39,7 +39,7 @@ const Login = () => {
             setLoading(true)
             const data = {email, password}
 
-            handleAuth(dispatch, data)
+            handleAuth(dispatchAuth, data)
                 .then(()=>{setLoading(false)})
                 .then(()=>{history.push('/admin')})
         }
@@ -48,9 +48,9 @@ const Login = () => {
     useEffect(()=>{
         //função
         if(
-            state['access-token'] != '' &&
-            state['client']       != '' &&
-            state['uid']          != ''
+            stateAuth['access-token'] != '' &&
+            stateAuth['client']       != '' &&
+            stateAuth['uid']          != ''
         ){
             history.push('/admin')
         }
@@ -64,7 +64,7 @@ const Login = () => {
             localState['client']       != '' &&
             localState['uid']          != ''
         ){
-            dispatch({
+            dispatchAuth({
                 type: 'authUser',
                 payload: localState
             })
@@ -94,13 +94,13 @@ const Login = () => {
 
                     <div className="login">
                         <form>
-                            <Input typeField="email" placeholder="Email" id="email" error={state.error}
+                            <Input typeField="email" placeholder="Email" id="email" error={stateAuth.error}
                                 img={IconEmail} altImg="Email"></Input>
 
-                            <Input typeField="password" placeholder="Senha" id="password" error={state.error}
+                            <Input typeField="password" placeholder="Senha" id="password" error={stateAuth.error}
                                 img={IconPassword} altImg="Senha"></Input>
 
-                            {state.error && (<p className="feedback">Credenciais informadas são inválidas, tente novamente.</p>)}
+                            {stateAuth.error && (<p className="feedback">Credenciais informadas são inválidas, tente novamente.</p>)}
 
                             <Button label="ENTRAR" event={tryAuth}></Button>
                         </form>

@@ -1,6 +1,9 @@
 import React, {useEffect, useContext, useState, useCallback} from 'react'
 import {useHistory} from 'react-router-dom'
+
 import AuthContext from '../../store/context/AuthContext'
+import EnterprisesContext from '../../store/context/EnterprisesContext'
+import {fetchAllEnterprises} from '../../store/actions'
 
 import {AdminStyles} from './styles'
 
@@ -9,12 +12,13 @@ import ImgSearch from '../../assets/images/search.png'
 import ImgClose from '../../assets/images/close.png'
 
 const Admin = () => {
-    const {state, dispatch}             = useContext(AuthContext)
-    const [searchInput, setSearchInput] = useState(false)
-    const history                       = useHistory()
+    const {stateAuth, dispatchAuth}                 = useContext(AuthContext)
+    const {stateEnterprises, dispatchEnterprises}   = useContext(EnterprisesContext)
+    const [searchInput, setSearchInput]             = useState(false)
+    const history                                   = useHistory()
 
     useEffect(()=>{
-        if(state['access-token'] == ''){
+        if(stateAuth['access-token'] == ''){
             let localState = JSON.parse(localStorage.getItem('io_auth'))
 
             if(!localState){
@@ -27,7 +31,7 @@ const Admin = () => {
                 localState['client']       != '' &&
                 localState['uid']          != ''
             ){
-                dispatch({
+                dispatchAuth({
                     type: 'authUser',
                     payload: localState
                 })
@@ -37,7 +41,12 @@ const Admin = () => {
 
     const handleSearch = useCallback(()=>{
         setSearchInput(!searchInput)
-    }, [searchInput])
+        fetchAllEnterprises(stateAuth, dispatchEnterprises)
+    }, [searchInput, stateAuth])
+
+    useEffect(()=>{
+        console.log(stateEnterprises)
+    }, [stateEnterprises])
 
     return (
         <AdminStyles>
@@ -60,7 +69,20 @@ const Admin = () => {
                 }
             </nav>
             <main>
-                <p>Clique na busca para iniciar.</p>
+                <div>
+                    {
+                        searchInput
+                            ? (<p>Digite para filtrar as empresas desejadas.</p>)
+                            : (<p>Clique na busca para iniciar.</p>)
+                    }
+                </div>
+                <div>
+                    {
+                        stateEnterprises.map(el => {
+                            return (<span key={el.id}>{el.enterprise_name} | </span>)
+                        })
+                    }
+                </div>
             </main>
         </AdminStyles>
     )

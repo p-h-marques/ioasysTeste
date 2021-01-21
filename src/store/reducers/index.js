@@ -6,13 +6,19 @@ export default function reducer(state, action){
         return {
             ...state, ...action.payload, error: false
         }
+
     case 'refuseUser':
         return {
             ...state,
             error: action.payload.error
         }
+
     case 'resetAuth':
         return initialData
+
+    case 'fetchAllEnterprises':
+        return action.payload
+
     default:
         return state
     }
