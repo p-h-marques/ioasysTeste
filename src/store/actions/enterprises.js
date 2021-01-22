@@ -14,7 +14,6 @@ export function makeHeaders(authState){
 
 export async function fetchAllEnterprises(authState, dispatchEnterprises){
     let config = makeHeaders(authState)
-    console.log(authState)
 
     const request  = await fetch(urlEnterprises, config)
     const response = await request.json()

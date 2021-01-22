@@ -41,17 +41,16 @@ const Login = () => {
 
             handleAuth(dispatchAuth, data)
                 .then(()=>{setLoading(false)})
-                .then(()=>{
-                    if(stateAuth['access-token'] != '') history.push('/admin')
-                })
         }
-    }, [])
+    }, [stateAuth, setLoading])
 
     useEffect(()=>{
-        console.log('salve')
+        if(stateAuth['access-token'] != '') history.push('/admin')
+    }, [stateAuth])
+
+    useEffect(()=>{
         verifyAuth(stateAuth)
             .then(resp => {
-
                 if(resp.validate){
                     dispatchAuth({
                         type: 'authUser',
@@ -77,7 +76,7 @@ const Login = () => {
                     </div>
 
                     <div className="description">
-                        <h1>BEM VINDO AO<br />EMPRESAS</h1>
+                        <h1>BEM VINDO AO<br />EMPRESAS {stateAuth.uid}</h1>
                         <p>Lorem ipsum dolor sit amet, contetur<br />adipiscing elit. Nunc accumsan.</p>
                     </div>
 

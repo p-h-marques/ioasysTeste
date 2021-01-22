@@ -5,6 +5,7 @@
 - descrever, depois, a estrutura de arquivos
 - descrever certinho as paradas do `store`
 - dar uma revisada nos requisitos
+- descrever linter
 
 ### TODOs
 - precisa ir validando as infos a cada requisição - ok
@@ -13,4 +14,6 @@
 - colocar loading na requisição das empresas - ok
 - deixar as "imagens" dinâmicas - ok
 - verificar o local storage em todas as páginas - ok
-- remover status de erro ao digitar nos inputs
+- remover status de erro ao digitar nos inputs - ok
+
+### REQUISITOS

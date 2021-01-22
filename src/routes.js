@@ -9,24 +9,20 @@ import './reset.css'
 function RoutesList() {
     return (
         <Switch>
-            <Route exact path="/login">
-                <Login></Login>
-            </Route>
-
-            <Route exact path="/">
-                <Redirect to="/login" />
+            <Route exact path="/admin/:id">
+                <Enterprise></Enterprise>
             </Route>
 
             <Route exact path="/admin">
                 <Admin></Admin>
             </Route>
 
-            <Route exact path="/admin/:id">
-                <Enterprise></Enterprise>
+            <Route exact path="/login">
+                <Login></Login>
             </Route>
 
-            <Route path="*">
-                <h1>Erro 404</h1>
+            <Route exact path="/">
+                <Redirect to="/login" />
             </Route>
         </Switch>
     )

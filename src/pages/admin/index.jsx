@@ -89,13 +89,7 @@ const Admin = () => {
                             </div>
                         )
                         : (
-                            <div className="enterprises">
-                                {
-                                    stateEnterprises.map(el => {
-                                        return (<Card {...el} key={el.id}/>)
-                                    })
-                                }
-                            </div>
+                            <div className="enterprises"> {stateEnterprises.map(el => { return (<Card {...el} key={el.id}/>) })} </div>
                         )
                 }
 
