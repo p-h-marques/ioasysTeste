@@ -9,7 +9,7 @@ import IconBack from '../../../assets/images/back.png'
 import ImgEmpresa from '../../../assets/images/empresa.png'
 
 const Enterprise = () => {
-    const {stateAuth} = useContext(AuthContext)
+    const {stateAuth, dispatchAuth} = useContext(AuthContext)
     const [enterprise, setEnterprise] = useState(null)
 
     const {id}      = useParams()
@@ -17,7 +17,18 @@ const Enterprise = () => {
 
     useEffect(()=>{
         fetchIdEnterprise(stateAuth, id)
-            .then(resp => {setEnterprise(resp)})
+            .then(resp => {
+                if(!resp){
+                    dispatchAuth({
+                        type: 'refuseUser',
+                        payload: {error: true}
+                    })
+
+                    history.push('/login')
+                } else {
+                    setEnterprise(resp)
+                }
+            })
     }, [id, stateAuth])
 
     return (

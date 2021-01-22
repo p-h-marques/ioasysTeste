@@ -1,3 +1,5 @@
+import {makeHeaders, urlEnterprises} from './enterprises'
+
 export const url = 'https://empresas.ioasys.com.br/api/v1/users/auth/sign_in'
 export const codeStorage = 'io_auth'
 
@@ -44,4 +46,36 @@ export async function handleAuth(dispatch, data){
         return false
 
     }
+}
+
+export async function verifyAuth(stateAuth){
+    let keys        = ['access-token', 'client', 'uid']
+    let actualAuth  = {}
+
+    //estado global
+    keys.forEach(el => {
+        actualAuth[el] = stateAuth[el]
+    })
+
+    //local storage
+    let localState = JSON.parse(localStorage.getItem('io_auth'))
+
+    if(localState != null){
+        keys.forEach(el => {
+            if(actualAuth[el] == '') actualAuth[el] = localState[el]
+        })
+    }
+
+    //validação
+    keys.forEach(el => {
+        if(actualAuth[el] == '') return false
+    })
+
+    //requisição
+    let config      = makeHeaders(actualAuth)
+    const request   = await fetch(urlEnterprises, config)
+
+    let validate = request.status == 200 ? true : false
+
+    return {validate, actualAuth}
 }

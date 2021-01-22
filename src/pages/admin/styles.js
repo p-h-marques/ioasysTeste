@@ -90,11 +90,11 @@ export const AdminStyles = styled.div`
 
     main{
         width: 100%;
-        height: 100%;
-        /* display: flex;
+        min-height: calc(100vh - 158px);
+        display: flex;
         flex-direction: column;
         justify-content: center;
-        align-items: center; */
+        align-items: center;
         padding: 44px;
 
         div.instructions{
@@ -113,6 +113,7 @@ export const AdminStyles = styled.div`
         div.enterprises{
             display: grid;
             row-gap: 44px;
+            width: 100%;
 
             @media(min-width: 1400px){
                 grid-template-columns: auto auto;

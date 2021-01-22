@@ -1,4 +1,4 @@
-import {handleAuth, codeStorage} from './auth'
+import {handleAuth, codeStorage, verifyAuth} from './auth'
 import {fetchAllEnterprises, fetchFilteredEnterprises} from './enterprises'
 
-export {handleAuth, codeStorage, fetchAllEnterprises, fetchFilteredEnterprises}
+export {handleAuth, codeStorage, verifyAuth, fetchAllEnterprises, fetchFilteredEnterprises}

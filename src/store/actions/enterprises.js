@@ -1,6 +1,6 @@
 export const urlEnterprises = 'https://empresas.ioasys.com.br/api/v1/enterprises'
 
-function makeHeaders(authState){
+export function makeHeaders(authState){
     return {
         method: 'GET',
         headers: {
@@ -14,6 +14,7 @@ function makeHeaders(authState){
 
 export async function fetchAllEnterprises(authState, dispatchEnterprises){
     let config = makeHeaders(authState)
+    console.log(authState)
 
     const request  = await fetch(urlEnterprises, config)
     const response = await request.json()

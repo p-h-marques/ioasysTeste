@@ -3,7 +3,7 @@ import {useHistory} from 'react-router-dom'
 
 import AuthContext from '../../store/context/AuthContext'
 import EnterprisesContext from '../../store/context/EnterprisesContext'
-import {fetchAllEnterprises, fetchFilteredEnterprises} from '../../store/actions'
+import {fetchAllEnterprises, fetchFilteredEnterprises, verifyAuth} from '../../store/actions'
 
 import {AdminStyles} from './styles'
 import ImgEmpresa from '../../assets/images/empresa.png'
@@ -20,25 +20,24 @@ const Admin = () => {
     const history                                   = useHistory()
 
     useEffect(()=>{
-        if(stateAuth['access-token'] == ''){
-            let localState = JSON.parse(localStorage.getItem('io_auth'))
+        verifyAuth(stateAuth)
+            .then(resp => {
+                console.log(resp)
 
-            if(!localState){
-                history.push('/login')
-                return false
-            }
+                if(resp.validate){
+                    dispatchAuth({
+                        type: 'authUser',
+                        payload: resp.actualAuth
+                    })
+                } else {
+                    dispatchAuth({
+                        type: 'refuseUser',
+                        payload: {error: true}
+                    })
 
-            if(
-                localState['access-token'] != '' &&
-                localState['client']       != '' &&
-                localState['uid']          != ''
-            ){
-                dispatchAuth({
-                    type: 'authUser',
-                    payload: localState
-                })
-            }
-        }
+                    history.push('/login')
+                }
+            })
     }, [])
 
     const handleSearch = useCallback(()=>{

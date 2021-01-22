@@ -3,7 +3,7 @@ import {useHistory} from 'react-router-dom'
 import {LoginStyles, LoadingStyles} from './styles'
 
 import AuthContext from '../../store/context/AuthContext'
-import {handleAuth, codeStorage} from '../../store/actions'
+import {handleAuth, codeStorage, verifyAuth} from '../../store/actions'
 
 import Input from '../../components/login/input'
 import Button from '../../components/login/button'
@@ -14,9 +14,9 @@ import IconEmail from '../../assets/images/email.png'
 import IconPassword from '../../assets/images/password.png'
 
 const Login = () => {
-    const {stateAuth, dispatchAuth}     = useContext(AuthContext)
-    const [loading, setLoading] = useState(false)
-    const history               = useHistory()
+    const {stateAuth, dispatchAuth} = useContext(AuthContext)
+    const [loading, setLoading]     = useState(true)
+    const history                   = useHistory()
 
     const tryAuth = useCallback(() => {
         dispatchAuth({
@@ -46,31 +46,22 @@ const Login = () => {
     }, [])
 
     useEffect(()=>{
-        //função
-        if(
-            stateAuth['access-token'] != '' &&
-            stateAuth['client']       != '' &&
-            stateAuth['uid']          != ''
-        ){
-            history.push('/admin')
-        }
+        console.log('salve')
+        verifyAuth(stateAuth)
+            .then(resp => {
 
-        let localState = JSON.parse(localStorage.getItem(codeStorage))
+                if(resp.validate){
+                    dispatchAuth({
+                        type: 'authUser',
+                        payload: resp.stateAuth
+                    })
 
-        if(!localState) return false
-
-        if(
-            localState['access-token'] != '' &&
-            localState['client']       != '' &&
-            localState['uid']          != ''
-        ){
-            dispatchAuth({
-                type: 'authUser',
-                payload: localState
+                    setLoading(false)
+                    history.push('/admin')
+                }
             })
+            .then(()=>{setLoading(false)})
 
-            history.push('/admin')
-        }
     },[])
 
     return (
