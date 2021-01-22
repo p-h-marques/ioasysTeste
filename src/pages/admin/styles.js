@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 
-import {colors, gradients, texts} from '../../themes/colors'
+import {colors, gradients} from '../../themes/colors'
 
 export const AdminStyles = styled.div`
     width: 100vw;
@@ -118,44 +118,6 @@ export const AdminStyles = styled.div`
             @media(min-width: 1400px){
                 grid-template-columns: auto auto;
                 column-gap: 30px;
-            }
-        }
-
-        div.card{
-            background-color: ${colors.whiteTwo};
-            border-radius: 4.7px;
-            width: 100%;
-            padding: 27px 30px;
-            display: flex;
-            flex-direction: row;
-            cursor: pointer;
-
-            &:hover{
-                background-color: ${colors.white};
-            }
-
-            div.img img{
-                width: 293px;
-                margin-right: 39px;
-            }
-
-            div.infos{
-                display: flex;
-                flex-direction: column;
-                justify-content: center;
-                align-items: flex-start;
-
-                h2{
-                    ${texts.style6}
-                }
-
-                p.type{
-                    ${texts.style7}
-                }
-
-                p.country{
-                    ${texts.style8}
-                }
             }
         }
 

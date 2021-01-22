@@ -5,9 +5,9 @@ import AuthContext from '../../store/context/AuthContext'
 import EnterprisesContext from '../../store/context/EnterprisesContext'
 import {fetchAllEnterprises, fetchFilteredEnterprises, verifyAuth} from '../../store/actions'
 
-import {AdminStyles} from './styles'
-import ImgEmpresa from '../../assets/images/empresa.png'
+import Card from '../../components/admin/card'
 
+import {AdminStyles} from './styles'
 import ImgNavLogo from '../../assets/images/logo-nav.png'
 import ImgSearch from '../../assets/images/search.png'
 import ImgClose from '../../assets/images/close.png'
@@ -92,18 +92,7 @@ const Admin = () => {
                             <div className="enterprises">
                                 {
                                     stateEnterprises.map(el => {
-                                        return (
-                                            <div key={el.id} className="card" onClick={()=>{history.push('/admin/' + el.id)}}>
-                                                <div className="img">
-                                                    <img src={ImgEmpresa} alt={el.enterprise_name}/>
-                                                </div>
-                                                <div className="infos">
-                                                    <h2>{el.enterprise_name}</h2>
-                                                    <p className="type">{el.enterprise_type.enterprise_type_name}</p>
-                                                    <p className="country">{el.country}</p>
-                                                </div>
-                                            </div>
-                                        )
+                                        return (<Card {...el} key={el.id}/>)
                                     })
                                 }
                             </div>

@@ -5,10 +5,10 @@ import AuthContext from '../../../store/context/AuthContext'
 import {fetchIdEnterprise} from '../../../store/actions/enterprises'
 
 import Loading from '../../../components/login/loading'
+import Cover from '../../../components/admin/cover'
 
 import {AdminStyles} from './../styles'
 import IconBack from '../../../assets/images/back.png'
-import ImgEmpresa from '../../../assets/images/empresa.png'
 
 const Enterprise = () => {
     const {stateAuth, dispatchAuth} = useContext(AuthContext)
@@ -47,7 +47,7 @@ const Enterprise = () => {
                 {
                     enterprise && (
                         <div className="details">
-                            <img src={ImgEmpresa} alt={enterprise.enterprise_name}/><p>{enterprise.description}</p>
+                            <Cover id={enterprise.id}/><p>{enterprise.description}</p>
                         </div>
                     )
                 }
