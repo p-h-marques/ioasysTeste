@@ -12,5 +12,5 @@
 - deixar requisições fetch centralizadas - ok
 - colocar loading na requisição das empresas - ok
 - deixar as "imagens" dinâmicas - ok
-- verificar o local storage em todas as páginas
+- verificar o local storage em todas as páginas - ok
 - remover status de erro ao digitar nos inputs

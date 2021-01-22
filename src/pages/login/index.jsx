@@ -41,7 +41,9 @@ const Login = () => {
 
             handleAuth(dispatchAuth, data)
                 .then(()=>{setLoading(false)})
-                .then(()=>{history.push('/admin')})
+                .then(()=>{
+                    if(stateAuth['access-token'] != '') history.push('/admin')
+                })
         }
     }, [])
 
@@ -81,10 +83,10 @@ const Login = () => {
 
                     <div className="login">
                         <form>
-                            <Input typeField="email" placeholder="Email" id="email" error={stateAuth.error}
+                            <Input typeField="email" placeholder="Email" id="email"
                                 img={IconEmail} altImg="Email"></Input>
 
-                            <Input typeField="password" placeholder="Senha" id="password" error={stateAuth.error}
+                            <Input typeField="password" placeholder="Senha" id="password"
                                 img={IconPassword} altImg="Senha"></Input>
 
                             {stateAuth.error && (<p className="feedback">Credenciais informadas são inválidas, tente novamente.</p>)}

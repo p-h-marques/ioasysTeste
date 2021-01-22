@@ -1,14 +1,17 @@
-import React, {useCallback, useState} from 'react'
+import React, {useCallback, useState, useContext} from 'react'
 import {InputStyles} from './styles'
+
+import AuthContext from '../../../store/context/AuthContext'
 
 import IconAlert from '../../../assets/images/alert.png'
 import IconShowPassword from '../../../assets/images/show-password.png'
 import IconHidePassword from '../../../assets/images/hide-password.png'
 
 const Input = ({
-    typeField, placeholder, id, error,
+    typeField, placeholder, id,
     img, altImg
 }) => {
+    const {stateAuth, dispatchAuth} = useContext(AuthContext)
     const [showPass, setShowPass]   = useState(typeField)
     const [iconPass, setIconPass]   = useState(IconShowPassword)
 
@@ -24,17 +27,25 @@ const Input = ({
 
     }, [showPass])
 
+    const clearErrors = useCallback(()=>{
+        dispatchAuth({
+            type: 'resetAuth',
+            payload: {}
+        })
+    }, [stateAuth])
+
     return (
-        <InputStyles id={id} className={error ? 'error' : ''}>
+        <InputStyles id={id} className={stateAuth.error ? 'error' : ''}>
             {img && (<img src={img} alt={altImg}/>)}
 
-            <input type={showPass} placeholder={placeholder} autoComplete="new-password"/>
+            <input type={showPass} placeholder={placeholder} autoComplete="new-password"
+                onChange={clearErrors}/>
 
-            {typeField == 'password' && !error && (
+            {typeField == 'password' && !stateAuth.error && (
                 <img src={iconPass} alt="Mostrar ou Exibir Senha" onClick={handleShowPass}/>
             )}
 
-            {error && (<img src={IconAlert} alt="Erro!"/>)}
+            {stateAuth.error && (<img src={IconAlert} alt="Erro!"/>)}
         </InputStyles>
     )
 }
