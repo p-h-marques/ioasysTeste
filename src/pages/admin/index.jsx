@@ -22,8 +22,6 @@ const Admin = () => {
     useEffect(()=>{
         verifyAuth(stateAuth)
             .then(resp => {
-                console.log(resp)
-
                 if(resp.validate){
                     dispatchAuth({
                         type: 'authUser',

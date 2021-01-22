@@ -4,6 +4,8 @@ import {useParams, useHistory} from 'react-router-dom'
 import AuthContext from '../../../store/context/AuthContext'
 import {fetchIdEnterprise} from '../../../store/actions/enterprises'
 
+import Loading from '../../../components/login/loading'
+
 import {AdminStyles} from './../styles'
 import IconBack from '../../../assets/images/back.png'
 import ImgEmpresa from '../../../assets/images/empresa.png'
@@ -33,6 +35,7 @@ const Enterprise = () => {
 
     return (
         <AdminStyles>
+            {enterprise == null && <Loading />}
             <nav>
                 <div className="enterprise">
                     <img src={IconBack} alt="Voltar"

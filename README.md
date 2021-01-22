@@ -7,16 +7,10 @@
 - dar uma revisada nos requisitos
 
 ### TODOs
-- precisa ir validando as infos a cada requisição
-- caso o request dê errado, fazer o processo de logout
-- deixar requisições fetch centralizadas
+- precisa ir validando as infos a cada requisição - ok
+- caso o request dê errado, fazer o processo de logout - ok
+- deixar requisições fetch centralizadas - ok
 - colocar loading na requisição das empresas
 - deixar as "imagens" dinâmicas
 - verificar o local storage em todas as páginas
-
-### VALIDANDO CREDENCIAIS
-- verifica state. se houver, usar ele no actualAuth - ok
-- se não houver, verificar localstorage. se houver, usar ele no actualAuth - ok
-- se o actualAuth tiver vazio, já retorna um false
-- se o actualAuth tiver infos, tenta uma requisição qualquer
-- se retornar 200, retornar true. caso contrário, retornar false
+- remover status de erro ao digitar nos inputs

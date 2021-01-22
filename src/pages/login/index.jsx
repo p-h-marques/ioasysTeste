@@ -1,15 +1,15 @@
 import React, {useCallback, useState, useContext, useEffect} from 'react'
 import {useHistory} from 'react-router-dom'
-import {LoginStyles, LoadingStyles} from './styles'
+import {LoginStyles} from './styles'
 
 import AuthContext from '../../store/context/AuthContext'
-import {handleAuth, codeStorage, verifyAuth} from '../../store/actions'
+import {handleAuth, verifyAuth} from '../../store/actions'
 
 import Input from '../../components/login/input'
 import Button from '../../components/login/button'
+import Loading from '../../components/login/loading'
 
 import ImgLogo from '../../assets/images/logo-home.png'
-import ImgLoading from '../../assets/images/loader.png'
 import IconEmail from '../../assets/images/email.png'
 import IconPassword from '../../assets/images/password.png'
 
@@ -66,11 +66,7 @@ const Login = () => {
 
     return (
         <>
-            {loading && (
-                <LoadingStyles>
-                    <img src={ImgLoading} alt="Autenticando..."/>
-                </LoadingStyles>
-            )}
+            {loading && (<Loading />)}
 
             <LoginStyles>
                 <div className="container">
