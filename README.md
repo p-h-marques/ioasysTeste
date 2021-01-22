@@ -1,11 +1,6 @@
-<h1 align="center">Teste técnico ioasys</h1>
+# Teste técnico ioasys
 
-<div align="center">
-  <strong>Olá! Aqui é o Pedro, e cá estou entregando o testezinho!</strong>
-</div>
-<div align="center">
-  Vou descrever um pouco das organizações e observações que tive durante o desenvolvimento do trampo.
-</div>
+Olá! Aqui é o Pedro, e cá estou entregando o testezinho! Vou descrever um pouco das organizações e observações que tive durante o desenvolvimento do trampo.
 
 ## Rodando o projeto
 
