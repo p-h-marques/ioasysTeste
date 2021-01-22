@@ -1,26 +1,31 @@
-# Teste Técnico ioasys
+<h1 align="center">Teste técnico ioasys</h1>
 
-Olá! Aqui é o Pedro, e cá estou entregando o testezinho! Vou descrever um pouco das organizações e observações sobre o trampo.
+<div align="center">
+  <strong>Olá! Aqui é o Pedro, e cá estou entregando o testezinho!</strong>
+</div>
+<div align="center">
+  Vou descrever um pouco das organizações e observações que tive durante o desenvolvimento do trampo.
+</div>
 
 ## :tw-1f31e: Rodando o projeto
 
-Pra poder clonar e rodar o projeto direitinho, é só mandar um `npm install && npm start`
+Pra poder clonar e rodar o projeto direitinho, é só mandar aqueles comandos padrão de sempre:
+
+```bash
+npm i && npm start
+```
 
 ## :tw-1f4c2: Estrutura de Pastas
 
 Pra organizar essa bagunça que pode se tornar o React, eu usei uma estrutura de pastas que segue o seguinte:
 
 - **assets**: onde coloquei as imagens e ícones das telas
-
 - **components**: todos os componentes são organizados por aqui, exceto aqueles que representam páginas. As subpastas são `admin` e `login`, para separar as áreas do sistema.
-
 - **pages**: todos os componentes que são referenciados pelo arquivo de rotas, representando as páginas do sistema. As subpastas são as mesmas dos componentes.
-
 - **store**: pra organizar toda a mágica que rola dentro do React:
- - actions: scripts que modificam o estado global da aplicação
- - context & providers: instanciando e disponibilizando o estado pra aplicação
- - reducers: organizador dos dados que são inseridos no estado da aplicação
-
+  - actions: scripts que modificam o estado global da aplicação
+  - context & providers: instanciando e disponibilizando o estado pra aplicação
+  - reducers: organizador dos dados que são inseridos no estado da aplicação
 - **themes**: cores, estilos de fonte e outras coisas relacionadas ao design system da aplicação.
 
 ## :tw-1f4e2: Possíveis melhorias
