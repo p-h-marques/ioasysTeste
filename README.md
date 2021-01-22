@@ -42,7 +42,7 @@ Os requisitos principais do app foram atendidos, mas devido ao tempo, algumas co
 
 ## Observações
 
-Algumas considerações que acho importante deixar por aqui:"
+Algumas considerações que acho importante deixar por aqui:
 
 - Usei styled components;
 
