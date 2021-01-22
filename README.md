@@ -7,7 +7,7 @@
   Vou descrever um pouco das organizações e observações que tive durante o desenvolvimento do trampo.
 </div>
 
-## :tw-1f31e: Rodando o projeto
+## Rodando o projeto
 
 Pra poder clonar e rodar o projeto direitinho, é só mandar aqueles comandos padrão de sempre:
 
@@ -15,7 +15,7 @@ Pra poder clonar e rodar o projeto direitinho, é só mandar aqueles comandos pa
 npm i && npm start
 ```
 
-## :tw-1f4c2: Estrutura de Pastas
+## Estrutura de Pastas
 
 Pra organizar essa bagunça que pode se tornar o React, eu usei uma estrutura de pastas que segue o seguinte:
 
@@ -28,7 +28,7 @@ Pra organizar essa bagunça que pode se tornar o React, eu usei uma estrutura de
   - reducers: organizador dos dados que são inseridos no estado da aplicação
 - **themes**: cores, estilos de fonte e outras coisas relacionadas ao design system da aplicação.
 
-## :tw-1f4e2: Possíveis melhorias
+## Possíveis melhorias
 
 Os requisitos principais do app foram atendidos, mas devido ao tempo, algumas coisas que eu acharia bacana inserir ficaram de fora. Mas, não pode esquecer:
 
@@ -39,3 +39,15 @@ Os requisitos principais do app foram atendidos, mas devido ao tempo, algumas co
 - Alguns estilos e espaçamentos no Zeplin precisaram ser ajustados oticamente (o famoso ajuste no olho), porque ficaram diferentes da proporção que o layout tinha. E, quando os espaçamentos eram muito quebrados, eu dava uma leve arredondada.
 
 - Algumas cores e fontes estavam fora do Styleguide, então fui criando na pastinha `themes` conforme iam surgindo.
+
+## Observações
+
+Algumas considerações que acho importante deixar por aqui:"
+
+- Usei styled components;
+
+- A organização dos `providers` e `reducers` pode melhorar, mas para o tamanho atual do app, não está prejudicial;
+
+- Seguindo o protótipo, os elementos ficaram bem grandões;
+
+- Na responsividade, cuidei para que tudo não quebrasse, mas apenas a tela da lista de empresas é que precisou de um cuidado maior.
