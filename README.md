@@ -1,6 +1,22 @@
-# Teste técnico ioasys
+# Teste Técnico ioasys
 
-Olá! Aqui é o Pedro, e cá estou entregando o testezinho! Vou descrever um pouco das organizações e observações que tive durante o desenvolvimento do trampo.
+Olá! Aqui é o Pedro, e cá está um repositóriozinho, em React, com base em um teste técnico que é aplicado pelo pessoal da [ioasys](https://https://www.ioasys.com.br/) em seu processo seletivo :D
+
+Além do próprio React, esse projeto envolveu algumas paradas bem legais:
+
+- **styled components** para deixar os estilos mais organizados;
+- **react hooks** como o `useState`, `useEffect` e `useCallback`;
+- **context API** para tratar as informações de login e a consulta das empresas
+- **autenticação** com uma tela e login, e verificação tela a tela (estado global & local storage) das credenciais do usuário.
+
+Caso queira rodar o projeto localmente, pode usar as seguintes credenciais:
+
+```js
+{
+  email: 'testeapple@ioasys.com.br',
+  password: '12341234'
+}
+```
 
 ## Rodando o projeto
 
@@ -25,21 +41,19 @@ Pra organizar essa bagunça que pode se tornar o React, eu usei uma estrutura de
 
 ## Possíveis melhorias
 
-Os requisitos principais do app foram atendidos, mas devido ao tempo, algumas coisas que eu acharia bacana inserir ficaram de fora. Mas, não pode esquecer:
+Os requisitos principais propostos pela documentação do teste foram atendidos, mas devido ao tempo, algumas coisas que eu acharia bacana inserir ficaram de fora. Mas, não pode esquecer:
 
 - A validação que o JS faz dos inputs é bem simples, coloquei apenas para validar um mínimo de caracteres. Porém, tem uma lib bem massa em [js-brasil](http://https://github.com/mariohmol/js-brasil "js-brasil"), que otimiza pra gente essa validação (e muitas outras que precisarmos)
 
 - Pra verificar se as credenciais do usuário, salvas previamente no Local Storage, são válidas, eu faço uma requisição no endpoint `enterprises`. Porém, o ideal era ter uma rota só pra esse tipo de validação, até pra ser mais rápido.
 
-- Alguns estilos e espaçamentos no Zeplin precisaram ser ajustados oticamente (o famoso ajuste no olho), porque ficaram diferentes da proporção que o layout tinha. E, quando os espaçamentos eram muito quebrados, eu dava uma leve arredondada.
+- Alguns estilos e espaçamentos no Zeplin, onde eles forneceram um layout para o desenvolvimento da interface, precisaram ser ajustados oticamente (o famoso ajuste no olho), porque ficaram diferentes da proporção que o layout tinha. E, quando os espaçamentos eram muito quebrados, eu dava uma leve arredondada.
 
 - Algumas cores e fontes estavam fora do Styleguide, então fui criando na pastinha `themes` conforme iam surgindo.
 
 ## Observações
 
 Algumas considerações que acho importante deixar por aqui:
-
-- Usei styled components;
 
 - A organização dos `providers` e `reducers` pode melhorar, mas para o tamanho atual do app, não está prejudicial;
 
