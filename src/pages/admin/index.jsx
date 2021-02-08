@@ -3,7 +3,7 @@ import {useHistory} from 'react-router-dom'
 
 import AuthContext from '../../store/context/AuthContext'
 import EnterprisesContext from '../../store/context/EnterprisesContext'
-import {fetchAllEnterprises, fetchFilteredEnterprises, verifyAuth} from '../../store/actions'
+import {fetchAllEnterprises, fetchFilteredEnterprises} from '../../store/actions'
 
 import Card from '../../components/admin/card'
 
@@ -20,23 +20,14 @@ const Admin = () => {
     const history                                   = useHistory()
 
     useEffect(()=>{
-        verifyAuth(stateAuth)
-            .then(resp => {
-                if(resp.validate){
-                    dispatchAuth({
-                        type: 'authUser',
-                        payload: resp.actualAuth
-                    })
-                } else {
-                    dispatchAuth({
-                        type: 'refuseUser',
-                        payload: {error: true}
-                    })
-
-                    history.push('/login')
-                }
+        if(stateAuth.logout){
+            dispatchAuth({
+                type: 'afterRefuseUser'
             })
-    }, [])
+
+            history.push('/login')
+        }
+    }, [stateAuth])
 
     const handleSearch = useCallback(()=>{
         setSearchInput(!searchInput)

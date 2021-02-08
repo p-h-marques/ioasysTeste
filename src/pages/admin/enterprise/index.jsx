@@ -18,19 +18,28 @@ const Enterprise = () => {
     const history   = useHistory()
 
     useEffect(()=>{
-        fetchIdEnterprise(stateAuth, id)
-            .then(resp => {
-                if(!resp){
-                    dispatchAuth({
-                        type: 'refuseUser',
-                        payload: {error: true}
-                    })
+        if(stateAuth.login){
+            fetchIdEnterprise(stateAuth, id)
+                .then(resp => {
+                    if(!resp){
+                        dispatchAuth({
+                            type: 'refuseUser'
+                        })
 
-                    history.push('/login')
-                } else {
-                    setEnterprise(resp)
-                }
+                        history.push('/login')
+                    } else {
+                        setEnterprise(resp)
+                    }
+                })
+        }
+
+        if(stateAuth.logout){
+            dispatchAuth({
+                type: 'afterRefuseUser'
             })
+
+            history.push('/login')
+        }
     }, [id, stateAuth])
 
     return (

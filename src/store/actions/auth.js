@@ -29,7 +29,7 @@ export async function handleAuth(dispatch, data){
 
         dispatch({
             type: 'authUser',
-            payload: body
+            payload: {...body}
         })
 
         return true
@@ -39,8 +39,7 @@ export async function handleAuth(dispatch, data){
         localStorage.removeItem(codeStorage)
 
         dispatch({
-            type: 'refuseUser',
-            payload: {error: true}
+            type: 'refuseUser'
         })
 
         return false
@@ -67,15 +66,18 @@ export async function verifyAuth(stateAuth){
     }
 
     //validação
+    let validate = true
     keys.forEach(el => {
-        if(actualAuth[el] == '') return false
+        if(actualAuth[el] == '') validate = false
     })
+
+    if(!validate) return false
 
     //requisição
     let config      = makeHeaders(actualAuth)
     const request   = await fetch(urlEnterprises, config)
 
-    let validate = request.status == 200 ? true : false
+    validate = request.status == 200 ? true : false
 
     return {validate, actualAuth}
 }

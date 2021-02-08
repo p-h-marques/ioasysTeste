@@ -2,19 +2,34 @@ import {initialData} from '../context/AuthContext'
 
 export default function reducer(state, action){
     switch (action.type) {
+    case 'authSingleUpdate':
+        return {...state, ...action.payload}
+
     case 'authUser':
         return {
-            ...state, ...action.payload, error: false
+            ...state,
+            ...action.payload,
+            login: true,
+            logout: false,
+            errors: false
         }
 
     case 'refuseUser':
         return {
-            ...state,
-            error: action.payload.error
+            ...initialData,
+            errors: true,
+            loading: false,
+            login: false,
+            logout: true
         }
 
-    case 'resetAuth':
-        return initialData
+    case 'afterRefuseUser':
+        return {
+            ...initialData,
+            errors: true,
+            loading: false,
+            login: false
+        }
 
     case 'fetchEnterprises':
         return action.payload

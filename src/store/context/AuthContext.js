@@ -4,7 +4,10 @@ export const initialData = {
     'access-token': '',
     'client': '',
     'uid': '',
-    error: false
+    'loading': true,
+    'errors': false,
+    'login': false,
+    'logout': false
 }
 
 const AuthContext = createContext()

@@ -28,24 +28,26 @@ const Input = ({
     }, [showPass])
 
     const clearErrors = useCallback(()=>{
-        dispatchAuth({
-            type: 'resetAuth',
-            payload: {}
-        })
+        if(stateAuth.errors){
+            dispatchAuth({
+                type: 'authSingleUpdate',
+                payload: {errors: false}
+            })
+        }
     }, [stateAuth])
 
     return (
-        <InputStyles id={id} className={stateAuth.error ? 'error' : ''}>
+        <InputStyles id={id} className={stateAuth.errors ? 'error' : ''}>
             {img && (<img src={img} alt={altImg}/>)}
 
             <input type={showPass} placeholder={placeholder} autoComplete="new-password"
                 onChange={clearErrors}/>
 
-            {typeField == 'password' && !stateAuth.error && (
+            {typeField == 'password' && !stateAuth.errors && (
                 <img src={iconPass} alt="Mostrar ou Exibir Senha" onClick={handleShowPass}/>
             )}
 
-            {stateAuth.error && (<img src={IconAlert} alt="Erro!"/>)}
+            {stateAuth.errors && (<img src={IconAlert} alt="Erro!"/>)}
         </InputStyles>
     )
 }

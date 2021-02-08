@@ -1,9 +1,9 @@
-import React, {useCallback, useState, useContext, useEffect} from 'react'
+import React, {useCallback, useContext, useEffect} from 'react'
 import {useHistory} from 'react-router-dom'
 import {LoginStyles} from './styles'
 
 import AuthContext from '../../store/context/AuthContext'
-import {handleAuth, verifyAuth} from '../../store/actions'
+import {handleAuth} from '../../store/actions'
 
 import Input from '../../components/login/input'
 import Button from '../../components/login/button'
@@ -15,59 +15,66 @@ import IconPassword from '../../assets/images/password.png'
 
 const Login = () => {
     const {stateAuth, dispatchAuth} = useContext(AuthContext)
-    const [loading, setLoading]     = useState(true)
     const history                   = useHistory()
 
-    const tryAuth = useCallback(() => {
-        dispatchAuth({
-            type: 'resetAuth',
-            payload: {}
-        })
+    //
+    // verificando localStorage em busca de autenticação prévia
+    //
+    useEffect(()=>{
+        if(stateAuth.login){
+            dispatchAuth({
+                type: 'authSingleUpdate',
+                payload: {loading: false}
+            })
 
+            history.push('/admin')
+        }
+    }, [stateAuth])
+
+    //
+    // executando tentativa de autenticação
+    //
+    const tryAuth = useCallback(() => {
         const email = document.querySelector('#email input').value
         const password = document.querySelector('#password input').value
 
         if(email.length < 3 || password.length < 3){
 
             dispatchAuth({
-                type: 'refuseUser',
-                payload: {error: true}
+                type: 'authSingleUpdate',
+                payload: {errors: true}
             })
+
             return false
 
         } else {
-            setLoading(true)
-            const data = {email, password}
-
-            handleAuth(dispatchAuth, data)
-                .then(()=>{setLoading(false)})
-        }
-    }, [stateAuth, setLoading])
-
-    useEffect(()=>{
-        if(stateAuth['access-token'] != '') history.push('/admin')
-    }, [stateAuth])
-
-    useEffect(()=>{
-        verifyAuth(stateAuth)
-            .then(resp => {
-                if(resp.validate){
-                    dispatchAuth({
-                        type: 'authUser',
-                        payload: resp.stateAuth
-                    })
-
-                    setLoading(false)
-                    history.push('/admin')
-                }
+            dispatchAuth({
+                type: 'authSingleUpdate',
+                payload: {loading: true}
             })
-            .then(()=>{setLoading(false)})
 
-    },[])
+            handleAuth(dispatchAuth, {email, password})
+                .then(resp => {
+                    if(resp.success){
+                        dispatchAuth({
+                            type: 'authSingleUpdate',
+                            payload: {loading: false}
+                        })
+
+                        history.push('/admin')
+                    } else {
+                        dispatchAuth({
+                            type: 'authSingleUpdate',
+                            payload: {errors: true}
+                        })
+                    }
+                })
+        }
+    }, [stateAuth])
 
     return (
         <>
-            {loading && (<Loading />)}
+            {stateAuth.loading && (<Loading />)}
 
             <LoginStyles>
                 <div className="container">
@@ -76,7 +83,7 @@ const Login = () => {
                     </div>
 
                     <div className="description">
-                        <h1>BEM VINDO AO<br />EMPRESAS {stateAuth.uid}</h1>
+                        <h1>BEM VINDO AO<br />EMPRESAS</h1>
                         <p>Lorem ipsum dolor sit amet, contetur<br />adipiscing elit. Nunc accumsan.</p>
                     </div>
 
@@ -88,7 +95,7 @@ const Login = () => {
                             <Input typeField="password" placeholder="Senha" id="password"
                                 img={IconPassword} altImg="Senha"></Input>
 
-                            {stateAuth.error && (<p className="feedback">Credenciais informadas são inválidas, tente novamente.</p>)}
+                            {stateAuth.errors && (<p className="feedback">Credenciais informadas são inválidas, tente novamente.</p>)}
 
                             <Button label="ENTRAR" event={tryAuth}></Button>
                         </form>
