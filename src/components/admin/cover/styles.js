@@ -6,7 +6,8 @@ export const CoverStyles = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 293px;
+    width: 100%;
+    max-width: 293px;
     margin-right: 39px;
     height: 160px;
     background-color: #7dc075;
@@ -14,6 +15,15 @@ export const CoverStyles = styled.div`
     .details &{
        height: 295px!important;
        width: 100%;
+       max-width: unset;
+
+        @media(max-width: 576px){
+           height: 120px!important;
+
+           h2{
+               font-size: 2.5rem;
+           }
+        }
     }
 
     h2{
@@ -24,5 +34,9 @@ export const CoverStyles = styled.div`
         line-height: normal;
         letter-spacing: normal;
         color: ${colors.whiteTwo};
+    }
+
+    @media(max-width: 991px){
+        margin: 0px;
     }
 `

@@ -33,4 +33,18 @@ export const CardStyles = styled.div`
             ${texts.style8}
         }
     }
+
+    @media(max-width: 991px){
+        flex-direction: column;
+        align-items: center;
+
+        div.infos{
+            margin-top: 15px;
+            align-items: center;
+        }
+
+        h2{
+            text-align: center;
+        }
+    }
 `

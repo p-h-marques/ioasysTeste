@@ -30,6 +30,24 @@ export const AdminStyles = styled.div`
                 right: 40px;
                 cursor: pointer;
             }
+
+            @media(max-width: 576px){
+                display: flex;
+                width: 100%;
+                justify-content: space-between;
+                align-items: center;
+                padding: 0px 15px;
+
+                img.logo{
+                    width: 160px;
+                    height: 40px;
+                }
+
+                img.search{
+                    position: unset;
+                    width: 30px;
+                }
+            }
         }
 
         div.search{
@@ -64,6 +82,27 @@ export const AdminStyles = styled.div`
                 right: 40px;
                 cursor: pointer;
             }
+
+            @media(max-width: 576px){
+                padding: 30px 15px;
+                align-items: center;
+
+                img.search{
+                    width: 30px;
+                    padding-bottom: 10px;
+                }
+
+                input{
+                    font-size: 1.5rem;
+                    padding: 0px 0px 10px 40px;
+                }
+
+                img.close{
+                    width: 30px;
+                    padding-bottom: 10px;
+                    right: 15px;
+                }
+            }
         }
 
         div.enterprise{
@@ -84,6 +123,18 @@ export const AdminStyles = styled.div`
                 font-size: 2.125rem;
                 line-height: 2.125rem;
                 color: ${colors.whiteTwo}
+            }
+
+            @media(max-width: 576px){
+                img{
+                    width: 30px;
+                }
+
+                span{
+                    font-size: 1.5rem;
+                    line-height: 1.5rem;
+                    margin-left: 30px;
+                }
             }
         }
     }
@@ -114,10 +165,18 @@ export const AdminStyles = styled.div`
             display: grid;
             row-gap: 44px;
             width: 100%;
+            column-gap: 30px;
+
+            @media(min-width: 767px){
+                grid-template-columns: auto auto;
+            }
+
+            @media(min-width: 991px){
+                grid-template-columns: auto;
+            }
 
             @media(min-width: 1400px){
                 grid-template-columns: auto auto;
-                column-gap: 30px;
             }
         }
 
@@ -142,6 +201,14 @@ export const AdminStyles = styled.div`
                 line-height: normal;
                 text-align: left;
                 color: ${colors.warmGrey};
+            }
+
+            @media(max-width: 576px){
+                padding: 40px 20px;
+
+                p{
+                    font-size: 1.5rem;
+                }
             }
         }
     }
