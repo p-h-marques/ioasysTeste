@@ -16,9 +16,16 @@ function Provider({ children }) {
                         payload: { ...resp.actualAuth }
                     })
                 } else {
-                    dispatchAuth({
-                        type: 'refuseUser'
-                    })
+                    if(location.pathname !== '/login'){
+                        dispatchAuth({
+                            type: 'refuseUser'
+                        })
+                    } else {
+                        dispatchAuth({
+                            type: 'authSingleUpdate',
+                            payload: { loading: false }
+                        })
+                    }
                 }
             })
     }, [])
