@@ -18,6 +18,8 @@ Caso queira rodar o projeto localmente, pode usar as seguintes credenciais:
 }
 ```
 
+E, caso queira apenas visualizá-lo, pode visitar o app [nesse link!](https://ioasysteste-c314f.web.app/)
+
 ## Rodando o projeto
 
 Pra poder clonar e rodar o projeto direitinho, é só mandar aqueles comandos padrão de sempre:
@@ -50,13 +52,3 @@ Os requisitos principais propostos pela documentação do teste foram atendidos,
 - Alguns estilos e espaçamentos no Zeplin, onde eles forneceram um layout para o desenvolvimento da interface, precisaram ser ajustados oticamente (o famoso ajuste no olho), porque ficaram diferentes da proporção que o layout tinha. E, quando os espaçamentos eram muito quebrados, eu dava uma leve arredondada.
 
 - Algumas cores e fontes estavam fora do Styleguide, então fui criando na pastinha `themes` conforme iam surgindo.
-
-## Observações
-
-Algumas considerações que acho importante deixar por aqui:
-
-- A organização dos `providers` e `reducers` pode melhorar, mas para o tamanho atual do app, não está prejudicial;
-
-- Seguindo o protótipo, os elementos ficaram bem grandões;
-
-- Na responsividade, cuidei para que tudo não quebrasse, mas apenas a tela da lista de empresas é que precisou de um cuidado maior.
