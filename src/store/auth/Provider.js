@@ -8,6 +8,7 @@ function Provider({ children }) {
     const [stateAuth, dispatchAuth] = useReducer(reducers, initialData)
 
     useEffect(()=>{
+        console.log('Para testar o app, use o login <testeapple@ioasys.com.br> e a senha <12341234>.')
         verifyAuth(stateAuth)
             .then(resp => {
                 if(resp.validate){
