@@ -1,4 +1,4 @@
-import {makeHeaders, urlEnterprises} from './enterprises'
+import {makeHeaders, urlEnterprises} from '../enterprises/actions'
 
 export const url = 'https://empresas.ioasys.com.br/api/v1/users/auth/sign_in'
 export const codeStorage = 'io_auth'

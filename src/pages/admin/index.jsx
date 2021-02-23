@@ -1,9 +1,9 @@
 import React, {useEffect, useContext, useState, useCallback} from 'react'
 import {useHistory} from 'react-router-dom'
 
-import AuthContext from '../../store/context/AuthContext'
-import EnterprisesContext from '../../store/context/EnterprisesContext'
-import {fetchAllEnterprises, fetchFilteredEnterprises} from '../../store/actions'
+import AuthContext from '../../store/auth/context'
+import EnterprisesContext from '../../store/enterprises/context'
+import {fetchAllEnterprises, fetchFilteredEnterprises} from '../../store/enterprises/actions'
 
 import Card from '../../components/admin/card'
 

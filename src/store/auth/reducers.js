@@ -1,4 +1,4 @@
-import {initialData} from '../context/AuthContext'
+import {initialData} from './context'
 
 export default function reducer(state, action){
     switch (action.type) {
@@ -30,9 +30,6 @@ export default function reducer(state, action){
             loading: false,
             login: false
         }
-
-    case 'fetchEnterprises':
-        return action.payload
 
     default:
         return state

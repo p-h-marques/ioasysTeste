@@ -1,7 +1,7 @@
 import React, {useCallback, useState, useContext} from 'react'
 import {InputStyles} from './styles'
 
-import AuthContext from '../../../store/context/AuthContext'
+import AuthContext from '../../../store/auth/context'
 
 import IconAlert from '../../../assets/images/alert.png'
 import IconShowPassword from '../../../assets/images/show-password.png'

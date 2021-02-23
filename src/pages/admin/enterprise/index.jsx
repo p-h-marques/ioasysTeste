@@ -1,8 +1,8 @@
 import React, {useEffect, useContext, useState} from 'react'
 import {useParams, useHistory} from 'react-router-dom'
 
-import AuthContext from '../../../store/context/AuthContext'
-import {fetchIdEnterprise} from '../../../store/actions/enterprises'
+import AuthContext from '../../../store/auth/context'
+import {fetchIdEnterprise} from '../../../store/enterprises/actions'
 
 import Loading from '../../../components/login/loading'
 import Cover from '../../../components/admin/cover'

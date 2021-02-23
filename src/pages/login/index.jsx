@@ -2,8 +2,8 @@ import React, {useCallback, useContext, useEffect} from 'react'
 import {useHistory} from 'react-router-dom'
 import {LoginStyles} from './styles'
 
-import AuthContext from '../../store/context/AuthContext'
-import {handleAuth} from '../../store/actions'
+import AuthContext from '../../store/auth/context'
+import {handleAuth} from '../../store/auth/actions'
 
 import Input from '../../components/login/input'
 import Button from '../../components/login/button'

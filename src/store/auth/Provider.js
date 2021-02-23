@@ -1,8 +1,8 @@
 import React, { useReducer, useEffect } from 'react'
-import AuthContext, {initialData} from '../context/AuthContext'
-import reducers from '../reducers'
+import AuthContext, {initialData} from '../auth/context'
+import reducers from './reducers'
 
-import { verifyAuth } from  '../actions/auth'
+import { verifyAuth } from  './actions'
 
 function Provider({ children }) {
     const [stateAuth, dispatchAuth] = useReducer(reducers, initialData)
